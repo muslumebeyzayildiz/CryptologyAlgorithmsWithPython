@@ -1,4 +1,5 @@
 #Matrislerin Tanımlanması
+
 alfabetikSolUst_kare = [
     ['a', 'b', 'c', 'ç', 'd', 'e'],
     ['f', 'g', 'ğ', 'h', 'ı', 'i'],
@@ -31,6 +32,8 @@ karisikSolAlt_kare = [
 ]
 
 def dortKareSifrele(metin):
+    alfabe = 'abcçdefgğhıijklmnoöprsştuüvyz'
+    metin = ''.join(char for char in metin.lower() if char in alfabe)
     # Metni ikişer ikişer böler
     metin = metin if len(metin) % 2 == 0 else metin + 'b'
     #for i in range(0, len(metin), 2): Bu ifade, metnin her iki karakterinde birer adım atarak bir döngü oluşturur.

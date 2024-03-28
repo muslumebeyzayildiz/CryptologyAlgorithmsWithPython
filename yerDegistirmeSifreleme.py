@@ -1,7 +1,16 @@
 import math
 
 def yer_degistirme_sifrele(metin, anahtar):
+    turkish_alphabet = "abcçdefgğhıijklmnoöprsştuüvyz"
+    # Metnin içindeki sayıları kaldır
+    #metin = ''.join(char for char in metin if not char.isdigit())
+    #print(metin)
+    # Metnin sadece Türkçe alfabede olan küçük harflerini al
+    metin = ''.join(char for char in metin.lower() if char in turkish_alphabet)
+    print(metin)
     # Metnin uzunluğunu ve satır sayısını hesapla
+
+
     metin_uzunlugu = len(metin)
     satir_sayisi = math.ceil(metin_uzunlugu / anahtar)
 
@@ -40,4 +49,3 @@ def yer_degistirme_desifrele(sifre, anahtar):
             metin += sutunlar[j][i]
 
     return metin.strip('b')
-

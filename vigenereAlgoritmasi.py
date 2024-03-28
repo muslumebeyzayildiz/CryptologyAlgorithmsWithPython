@@ -3,8 +3,8 @@ def vigenere_sifrele(metin, anahtar):
     alfabe = 'abcçdefgğhıijklmnoöprsştuüvyz'
 
     # Metni ve anahtarı Türkçe alfabeye uyumlu hale getir
-    metin = metin.lower()
-    anahtar = anahtar.lower()
+    metin = ''.join(char for char in metin.lower() if char in alfabe)
+    anahtar = ''.join(char for char in anahtar.lower() if char in alfabe)
 
     # Anahtarı metnin uzunluğuna genişlet
     # Anahtar metnin uzunluğuna ulaşana kadar çoğaltılır. Eğer anahtar, metinden daha uzunsa, fazla kısmı kesilir. Bu işlem, metnin her bir karakterine karşılık gelen bir anahtar oluşturur.
@@ -15,7 +15,7 @@ def vigenere_sifrele(metin, anahtar):
     #zip() fonksiyonu, metin ve genişletilmiş anahtar arasında aynı konumda bulunan karakterleri çiftler halinde birleştirir.
     # Yani her bir adımda, metinden bir karakter (m) ve anahtardan bir karakter (a) alınır.
     for m, a in zip(metin, genisletilmis_anahtar):
-        #Karakterin alfabede olup olmadığını kontrol eder. Eğer karakter alfabede yer alıyorsa, şifreleme işlemi uygulanır.
+        # Karakterin alfabede olup olmadığını kontrol eder. Eğer karakter alfabede yer alıyorsa, şifreleme işlemi uygulanır.
         if m in alfabe:
             m_index = alfabe.index(m) #Şifrelenen metindeki karakterin alfabe içindeki dizinini bulur.
             a_index = alfabe.index(a) #Anahtar metindeki karakterin alfabe içindeki dizinini bulur.
@@ -33,7 +33,7 @@ def vigenere_desifrele(sifreli_metin, anahtar):
 
     # Şifreli metni ve anahtarı Türkçe alfabeye uyumlu hale getir
     sifreli_metin = sifreli_metin.lower()
-    anahtar = anahtar.lower()
+    anahtar = ''.join(char for char in anahtar.lower() if char in alfabe)
 
     # Anahtarı şifreli metnin uzunluğuna genişlet
     genisletilmis_anahtar = anahtar * (len(sifreli_metin) // len(anahtar)) + anahtar[:len(sifreli_metin) % len(anahtar)]

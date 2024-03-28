@@ -8,6 +8,8 @@ from zigzagSifreleme import zigzag_cipher, zigzag_decipher
 
 
 #  müslümebeyzayıldız
+# boşlukları, sayıları ve özel kkaarakterleri atlayarak türkçe alfabedeki küçük harfe çeviriuor
+# müSLüme123 BeYZA+%+%&% yıldız
 def main():
     #CTRL / İLE TOPLU YORUM SATIRI OLUŞTURMA KALDIRMA
 
@@ -21,7 +23,7 @@ def main():
 
     print("*********************************************")
 
-    key = 346215
+    key = "346215"
     message = input("PERMÜTASYON ŞİFRELEMEYLE Şifrelemek istediğiniz metni girin: ")
     encrypted = permutation_cipher(message, key)
     print(encrypted)
@@ -40,8 +42,10 @@ def main():
 
     print("*********************************************")
 
-    print("ROTA İÇİN müslümebeyzayıldızbb")
-    encrypted_text = route_encrypt(plain_text="müslümebeyzayıldızbb")
+
+    plain_text = input("ROTA ŞİFRELEMEYLE Şifrelemek istediğiniz metni girin: ")
+    step_size = int(input("anahtarı girin: "))
+    encrypted_text = route_encrypt(plain_text,step_size)
     print("Encrypted Text:",encrypted_text)
 
     print("*********************************************")
@@ -63,6 +67,8 @@ def main():
     print("Orijinal Metin:", orijinal_metin)
 
     print("*********************************************")
+
+    # müSLüme123 BeYZA+%+%&% yıldız
     metin = input("DÖRT KARE ALGORİTMASIYLA Şifrelenecek metni girin: ")
     sifrelenmis_metin = dortKareSifrele(metin)
     print("Şifrelenmiş Metin:", sifrelenmis_metin)

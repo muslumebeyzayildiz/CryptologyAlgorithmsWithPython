@@ -2,19 +2,25 @@ def permutation_cipher(msg: str, key: int, decrypt: bool=False) -> str:
     key = str(key)
     key_len = len(key)
     result = ''
+    turkish_alphabet = "abcçdefgğhıijklmnoöprsştuüvyz"
 
-    # msg'yi gerekliyse boşluklar ekleyerek bir tam sayı katına tamamlar.
-    msg += ' ' * ((key_len - (len(msg) % key_len)) % key_len)
+    # Msg'deki Türk alfabesi harflerini filtrele, özel karakterleri ve sayıları kaldır
+    filtered_msg = ''.join(char for char in msg.lower() if char in turkish_alphabet)
+    print('küçük harflerden oluşan metin',filtered_msg)
 
-    # Blok sayısını hesaplayın
-    num_blocks = int(len(msg) / key_len)
+    # Msg'yi gerekliyse b ekleyerek bir tam sayı katına tamamla
+    if len(filtered_msg) % key_len != 0:
+        filtered_msg += 'b' * (key_len - (len(filtered_msg) % key_len))
+
+    # Blok sayısını hesapla
+    num_blocks = len(filtered_msg) // key_len
 
     # Her bloğu işle
     for num_block in range(num_blocks):
         # Geçerli bloğu al
         # Her parçayı, anahtar kullanarak karakterlerin yerlerini değiştirerek yeni bir blok oluştur.
         start_idx = num_block * key_len
-        block = [x for x in msg[start_idx:(start_idx + key_len)]]
+        block = [x for x in filtered_msg[start_idx:(start_idx + key_len)]]
         #Bu kısım, verilen mesajı parçalara böler. start_idx değişkeni, mevcut bloğun başlangıç indeksini hesaplar.
         # Her bir blok, start_idx ile başlayıp (start_idx + key_len) ile biten bir dilim ile alınır.
 

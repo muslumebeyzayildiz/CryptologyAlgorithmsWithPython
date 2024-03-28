@@ -1,4 +1,7 @@
 def zigzag_cipher(message, num_rows):
+    turkish_alphabet = "abcçdefgğhıijklmnoöprsştuüvyz"
+    message = ''.join(char for char in message.lower() if char in turkish_alphabet)
+
     # Boş bir matris oluştur
     matrix = [['' for _ in range(len(message))] for _ in range(num_rows)]
     #matrix adlı bu iki boyutlu liste

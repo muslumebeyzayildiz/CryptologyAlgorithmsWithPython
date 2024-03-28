@@ -1,23 +1,29 @@
 import random
+#müslümebeyza 56+^%+yıldız
 def yerine_koyma_sifrele(metin, anahtar):
     sifrelenmis_metin = ""
-    for harf in metin:
-        if harf in anahtar:
-            sifrelenmis_harf = anahtar[harf]
-            sifrelenmis_metin += sifrelenmis_harf
-        else:
-            sifrelenmis_metin += harf
+    turkce_harfler = "abcçdefgğhıijklmnoöprsştuüvyz"
+
+    for harf in metin.lower():
+        if harf != ' ' and harf in turkce_harfler:
+            if harf in anahtar:
+                sifrelenmis_harf = anahtar[harf]
+                sifrelenmis_metin += sifrelenmis_harf
+            else:
+                sifrelenmis_metin += harf
     return sifrelenmis_metin
 
 def yerine_koyma_desifrele(sifreli_metin, anahtar):
     orijinal_metin = ""
-    for harf in sifreli_metin:
-        for key, value in anahtar.items():
-            if value == harf:
-                orijinal_metin += key
-                break
-        else:
-            orijinal_metin += harf
+    turkce_harfler = "abcçdefgğhıijklmnoöprsştuüvyz"
+    for harf in sifreli_metin.lower():
+        if harf != ' ' and harf in turkce_harfler:
+            for key, value in anahtar.items():
+                if value == harf:
+                    orijinal_metin += key
+                    break
+            else:
+                orijinal_metin += harf
     return orijinal_metin
 
 def anahtar_olustur():
